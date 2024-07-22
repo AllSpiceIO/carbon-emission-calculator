@@ -1,0 +1,14 @@
+name: "Calculate the carbon sum emission figure for the components in a PCBA given a data source with emissions data"
+description: >
+  Calculate the carbon sum emission figure for the components in a PCBA given a data source with emissions data
+inputs:
+  bom_file:
+    description: "Path to the BOM CSV file"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.bom_file }}
+  env:
+    ALLSPICE_AUTH_TOKEN: ${{ github.token }}
