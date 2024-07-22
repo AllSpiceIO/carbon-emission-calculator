@@ -26,7 +26,7 @@ def get_carbon_emission_data_dict_from_source(url):
 def query_demo_carbon_emission_data_for_mfr_part_number(data, part_number):
     # Look up part number in dictionary, return emission figure if exists
     try:
-        return data[part_number]
+        return (data[part_number]).strip().replace('"', "")
     # Return 0 as a default if part doesn't exist in data source
     except KeyError:
         return 0.0
