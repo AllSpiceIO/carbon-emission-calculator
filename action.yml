@@ -5,10 +5,21 @@ inputs:
   bom_file:
     description: "Path to the BOM CSV file"
     required: true
+  output_file:
+    description: "Path to the output CSV or Markdown file"
+    required: false
+  markdown:
+    description: "Whether to output the results in Markdown format"
+    required: false
+    default: "False"
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
     - ${{ inputs.bom_file }}
+    - "--output-file"
+    - ${{ inputs.output_file }}
+    - "--markdown"
+    - ${{ inputs.markdown }}
   env:
     ALLSPICE_AUTH_TOKEN: ${{ github.token }}
